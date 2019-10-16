@@ -80,6 +80,7 @@ extern const struct _mp_obj_module_t mp_module_litex;
 #define MICROPY_PORT_BUILTIN_MODULES \
     { MP_ROM_QSTR(MP_QSTR_umachine), MP_ROM_PTR(&mp_module_machine) }, \
     { MP_ROM_QSTR(MP_QSTR_litex), MP_ROM_PTR(&mp_module_litex) }, \
+    { MP_ROM_QSTR(MP_QSTR_time), MP_ROM_PTR(&mp_module_litex) }, \
 
 // We need to provide a declaration/definition of alloca()
 #include <alloca.h>

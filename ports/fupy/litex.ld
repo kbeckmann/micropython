@@ -52,7 +52,10 @@ SECTIONS
 		_ebss = .;
 		_end = .;
 		end = .;
-	} > sram
+	} > main_ram
 }
 
+/*
+PROVIDE(_fstack = ORIGIN(main_ram) + LENGTH(main_ram) - 4);
+*/
 PROVIDE(_fstack = ORIGIN(sram) + LENGTH(sram) - 4);

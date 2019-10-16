@@ -7,12 +7,14 @@
 #include "generated/csr.h"
 
 #if !defined(CSR_CAS_BASE) || !defined(CSR_CAS_LEDS_OUT_ADDR)
-static inline unsigned char cas_leds_out_read(void) {
-	return 0;
-}
+#define cas_leds_out_read gpio_out_read
+#define cas_leds_out_write gpio_out_write
+// static inline unsigned char cas_leds_out_read(void) {
+// 	return 0;
+// }
 
-static inline void cas_leds_out_write(unsigned char value) {
-}
+// static inline void cas_leds_out_write(unsigned char value) {
+// }
 #endif
 
 const mp_obj_type_t litex_led_type;
@@ -81,11 +83,20 @@ STATIC mp_obj_t litex_led_off(mp_obj_t self_in) {
 }
 STATIC MP_DEFINE_CONST_FUN_OBJ_1(litex_led_off_obj, litex_led_off);
 
+STATIC mp_obj_t litex_led_sleep(mp_obj_t self_in) {
+	volatile int i;
+	for (i = 0; i < 1000000; i++);
+
+	return mp_const_none;
+}
+STATIC MP_DEFINE_CONST_FUN_OBJ_1(litex_led_sleep_obj, litex_led_sleep);
+
 
 STATIC const mp_map_elem_t litex_led_locals_dict_table[] = {
 	{ MP_OBJ_NEW_QSTR(MP_QSTR_read), (mp_obj_t)&litex_led_read_obj },
 	{ MP_OBJ_NEW_QSTR(MP_QSTR_on), (mp_obj_t)&litex_led_on_obj },
 	{ MP_OBJ_NEW_QSTR(MP_QSTR_off), (mp_obj_t)&litex_led_off_obj },
+	{ MP_OBJ_NEW_QSTR(MP_QSTR_sleep), (mp_obj_t)&litex_led_sleep_obj },
 };
 STATIC MP_DEFINE_CONST_DICT(litex_led_locals_dict, litex_led_locals_dict_table);
 
