@@ -13,4 +13,3 @@ LIBCOMPILER_RT_DIRECTORY=/home/konrad/dev/litex/litex/soc/software/libcompiler_r
 LIBBASE_DIRECTORY=/home/konrad/dev/litex/litex/soc/software/libbase
 LIBNET_DIRECTORY=/home/konrad/dev/litex/litex/soc/software/libnet
 BIOS_DIRECTORY=/home/konrad/dev/litex/litex/soc/software/bios
-KERNEL_DIRECTORY=/home/konrad/dev/litex/kilsyth/kernel

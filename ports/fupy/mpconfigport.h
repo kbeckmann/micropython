@@ -44,10 +44,12 @@
 #define MICROPY_PY_IO               (0)
 #define MICROPY_PY_STRUCT           (0)
 #define MICROPY_PY_SYS              (1)
+#define MICROPY_PY_UTIME_MP_HAL     (1)
 #define MICROPY_MODULE_FROZEN_MPY   (0)
 #define MICROPY_CPYTHON_COMPAT      (0)
 #define MICROPY_LONGINT_IMPL        (MICROPY_LONGINT_IMPL_MPZ)
 #define MICROPY_FLOAT_IMPL          (MICROPY_FLOAT_IMPL_DOUBLE)
+#define MICROPY_PY_UTIMEQ           (1)
 
 #define MICROPY_PY_MACHINE          (1)
 #define MICROPY_KBD_EXCEPTION       (1)
@@ -55,6 +57,12 @@
 // type definitions for the specific machine
 
 #define BYTES_PER_WORD (4)
+
+#define MICROPY_EVENT_POLL_HOOK \
+    do { \
+        extern void mp_handle_pending(void); \
+        mp_handle_pending(); \
+    } while (0);
 
 #define MICROPY_MAKE_POINTER_CALLABLE(p) ((void*)((mp_uint_t)(p) | 1))
 
@@ -77,10 +85,11 @@ typedef long mp_off_t;
 
 extern const struct _mp_obj_module_t mp_module_machine;
 extern const struct _mp_obj_module_t mp_module_litex;
+extern const struct _mp_obj_module_t mp_module_utime;
 #define MICROPY_PORT_BUILTIN_MODULES \
     { MP_ROM_QSTR(MP_QSTR_umachine), MP_ROM_PTR(&mp_module_machine) }, \
     { MP_ROM_QSTR(MP_QSTR_litex), MP_ROM_PTR(&mp_module_litex) }, \
-    { MP_ROM_QSTR(MP_QSTR_time), MP_ROM_PTR(&mp_module_litex) }, \
+    { MP_ROM_QSTR(MP_QSTR_utime), MP_ROM_PTR(&mp_module_utime) }, \
 
 // We need to provide a declaration/definition of alloca()
 #include <alloca.h>

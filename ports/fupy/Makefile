@@ -61,9 +61,11 @@ LIBS = -Wl,-lc -Wl,-lm
 SRC_C = \
 	main.c \
 	uart.c \
+	timer0.c \
 	isr.c \
 	modmachine.c \
 	modlitex.c \
+	modutime.c \
 	litex_leds.c \
 	litex_switches.c \
 	lib/utils/stdout_helpers.c \

@@ -52,7 +52,7 @@ SECTIONS
 		_ebss = .;
 		_end = .;
 		end = .;
-	} > main_ram
+	} > sram
 }
 
 /*

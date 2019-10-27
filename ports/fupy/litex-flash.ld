@@ -12,14 +12,14 @@ SECTIONS
 	.fbi :
 	{
 		. = . + 8; /* Firmware Base Image format (len/crc) data comes first. */
-	} > user_flash
+	} > spiflash
 
 	.text :
 	{
 		_ftext = .;
 		*(.text .stub .text.* .gnu.linkonce.t.*)
 		_etext = .;
-	} > user_flash
+	} > spiflash
 
 	.rodata :
 	{
@@ -31,7 +31,7 @@ SECTIONS
 		is higher priority than speed here. */
 		*(.srodata .srodata.*)
 		_erodata = .;
-	} > user_flash
+	} > spiflash
 
 	.data : AT (ADDR(.rodata) + SIZEOF (.rodata))
 	{

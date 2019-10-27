@@ -34,7 +34,8 @@ void do_str(const char *src, mp_parse_input_kind_t input_kind) {
 }
 
 static char *stack_top;
-static char heap[1024*1024*8];
+// static char heap[1024*1024*1];
+static char heap[16*1024];
 
 #include "irq.h"
 
@@ -45,6 +46,7 @@ int main(int argc, char **argv) {
     irq_setmask(0);
     irq_setie(1);
     uart_init();
+    timer0_init();
 
     #if MICROPY_ENABLE_GC
     gc_init(heap, heap + sizeof(heap));
