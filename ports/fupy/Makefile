@@ -43,7 +43,7 @@ ASFLAGS += -I$(BUILDINC_DIRECTORY)
 
 CFLAGS += $(CPUFLAGS)
 CFLAGS += $(INC) -Wall -Werror -std=gnu11 -ggdb $(COPT)
-CFLAGS += -Og -Wdouble-promotion -Wall -Werror
+CFLAGS += -Os -Wdouble-promotion -Wall -Werror
 
 ifneq ($(DEBUG), 1)
 CFLAGS += -DNDEBUG
